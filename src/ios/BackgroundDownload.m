@@ -100,7 +100,8 @@
             // resumeData is available only if operation was terminated by the system (no connection or other reason)
             // this happens when application is closed when there is pending download, so we try to resume it
             if (resumeData != nil) {
-                ignoreNextError = YES;
+                //commented because when app used to resume things didnt work
+                //ignoreNextError = YES;
                 [downloadTask cancel];
                 downloadTask = [self.session downloadTaskWithResumeData:resumeData];
                 [downloadTask resume];
