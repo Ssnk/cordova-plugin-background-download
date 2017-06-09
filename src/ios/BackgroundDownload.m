@@ -56,10 +56,12 @@
 {
     static NSURLSession *backgroundSession = nil;
     static dispatch_once_t onceToken;
+    NSString *downloadId = [NSString stringWithFormat:@"%@ - %@",self.appId,self.downloadId]; //[self.appId stringByAppendingString:self.downloadId];
+    NSLog(@"Download id is %@",downloadId);
     dispatch_once(&onceToken, ^{
          NSURLSessionConfiguration *config;
         if ([NSURLSessionConfiguration respondsToSelector:@selector(backgroundSessionConfigurationWithIdentifier:)]) {
-            config = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"com.cordova.plugin.BackgroundDownload.BackgroundSession"];
+            config = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:downloadId];
         }
         else{
             config = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -109,7 +111,7 @@
             // resumeData is available only if operation was terminated by the system (no connection or other reason)
             // this happens when application is closed when there is pending download, so we try to resume it
             if (resumeData != nil) {
-                //commented because when app used to resume things didnt work
+                //!! commented because when app used to resume things didnt work
                 //ignoreNextError = YES;
                 [downloadTask cancel];
                 downloadTask = [self.session downloadTaskWithResumeData:resumeData];
