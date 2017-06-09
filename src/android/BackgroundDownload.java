@@ -52,6 +52,8 @@ public class BackgroundDownload extends CordovaPlugin {
 
         private String filePath;
         private String tempFilePath;
+        private String appId;
+        private String downloadTitle;
         private String uriString;
         private CallbackContext callbackContext; // The callback context from which we were invoked.
         private CallbackContext callbackContextDownloadStart; // The callback context from which we started file download command.
@@ -73,7 +75,7 @@ public class BackgroundDownload extends CordovaPlugin {
             return appId;
         }
 
-        public void setAppId(appId){
+        public void setAppId(String appId){
             this.appId = appId;
         }
 
@@ -81,7 +83,7 @@ public class BackgroundDownload extends CordovaPlugin {
             return downloadTitle;
         }
 
-        public void setDownloadTitle(downloadTitle){
+        public void setDownloadTitle(String downloadTitle){
             this.downloadTitle = downloadTitle;
         }
 
@@ -171,7 +173,7 @@ public class BackgroundDownload extends CordovaPlugin {
             cordova.getActivity().registerReceiver(receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
         }
 
-        Download curDownload = new Download(args.get(0).toString(), args.get(1).toString(),args.get(2),args.get(3), callbackContext);
+        Download curDownload = new Download(args.get(0).toString(), args.get(1).toString(),args.get(2).toString(),args.get(3).toString(), callbackContext);
 
         if (activDownloads.containsKey(curDownload.getUriString())) {
             return;
