@@ -54,7 +54,7 @@ DownloadOperation.prototype.startAsync = function() {
             
             if (result && typeof result.progress != 'undefined') {
                 deferral.notify(result.progress);
-            } else {
+            } else { 
                 deferral.resolve(result);
             }
         },

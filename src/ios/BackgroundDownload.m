@@ -30,6 +30,8 @@
 {
     self.downloadUri = [command.arguments objectAtIndex:0];
     self.targetFile = [command.arguments objectAtIndex:1];
+    self.appId = [command.arguments objectAtIndex:2];
+    self.downloadId = [command.arguments objectAtIndex:3];
     
     self.callbackId = command.callbackId;
     

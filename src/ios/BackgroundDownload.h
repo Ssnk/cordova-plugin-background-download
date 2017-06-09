@@ -27,6 +27,8 @@
 @property NSString *targetFile;
 @property NSString *downloadUri;
 @property NSString *callbackId;
+@property NSString *appId;
+@property NSString *downloadId;
 
 @property (nonatomic) NSURLSession *session;
 @property (nonatomic) NSURLSessionDownloadTask *downloadTask;
